@@ -7,13 +7,9 @@ services:
             context: ./api1
             dockerfile: Dockerfile
         networks:
-            api:
-                aliases:
-                    - api1
+            - api
         ports:
             - "5001:80"
-        depends_on:
-                - api2
     api2:
         image: api2
         container_name: api2
@@ -21,12 +17,9 @@ services:
             context: ./api2
             dockerfile: Dockerfile
         networks:
-            api:
-                aliases: 
-                    - api2
+            - api
         ports:
             - "5002:80"        
 networks:
     api:
         name: api
-        driver: bridge
